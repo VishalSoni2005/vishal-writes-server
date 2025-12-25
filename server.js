@@ -21,10 +21,10 @@ app.use(
     tempFileDir: "/tmp/"
   })
 ); //* special middleware to upload files
-app.use(cors({ origin: "http://localhost:5173" }));
+// app.use(cors({ origin: true, credentials: true })); // Enable CORS for all origins with credentials
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type"],
     credentials: true // Allow cookies
@@ -39,8 +39,7 @@ app.use((req, res, next) => {
 // routes
 app.use("/", routes);
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.port || 8080;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
-
